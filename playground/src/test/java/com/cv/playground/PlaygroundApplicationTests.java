@@ -16,11 +16,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = PlaygroundApplication.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest(classes = PlaygroundApplication.class)
 public class PlaygroundApplicationTests {
-	
-	@LocalServerPort
-	private int port;
 
 	TestRestTemplate restTemplate = new TestRestTemplate();
 
@@ -33,7 +30,7 @@ public class PlaygroundApplicationTests {
 		HttpEntity<String> entity = new HttpEntity<String>(null, headers);
 
 		ResponseEntity<String> response = restTemplate.exchange(
-				createURLWithPort("/products/all"),
+				createURLWithPort("/products"),
 				HttpMethod.GET, entity, String.class);
 
 			assertTrue(200 == response.getStatusCodeValue());	
@@ -45,7 +42,7 @@ public class PlaygroundApplicationTests {
 		HttpEntity<String> entity = new HttpEntity<String>(null, headers);
 
 		ResponseEntity<String> response = restTemplate.exchange(
-				createURLWithPort("/product/5c5dac7d1c9d4400003d9eb9"),
+				createURLWithPort("/products/5c5dac7d1c9d4400003d9eb9"),
 				HttpMethod.GET, entity, String.class);
 
 			assertTrue(200 == response.getStatusCodeValue());	
@@ -53,7 +50,7 @@ public class PlaygroundApplicationTests {
 
 
 	private String createURLWithPort(String uri) {
-		return "http://localhost:" + port + "/playground"+ uri;
+		return "http://localhost:8080/playground"+ uri;
 	}
 
 }
