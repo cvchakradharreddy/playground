@@ -1,0 +1,33 @@
+<div ng-controller="productController">
+	
+	<div style="width:50%;margin:auto;">
+		<h1 style="text-align:center;"> List of products available</h1>
+		<table class="table" >
+		<thead>
+			<tr>
+				<th></th>
+				<th>Product name</th>
+				<th>Price</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="product in products">
+				<td>
+					<input type="checkbox" ng-model="checkboxModel.value2"  
+					value="{{product.product_id}}"
+           			 ng-checked="selection.indexOf(product.product_id)>-1"
+           			 ng-click="toggleSelection(product.product_id)">
+				</td>
+				<td>{{product.name}}</td>
+				<td>{{product.price}}</td>
+			</tr>
+		</tbody>
+	</table>
+		
+	</div>
+	<div style="width:100;text-align:center">
+	<button class="btn btn-primary" ng-click="checkout()">Checkout</button>
+	</div>
+			
+		
+</div>
